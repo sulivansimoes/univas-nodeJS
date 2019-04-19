@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div style="margin: 2rem">
+        <form> 
+            <input type="hidden" name="id" value="<%= contacts == null ? "" : id %>">
+            <!-- LINHA 01 -->
+            <div class="form-row">
+                <!-- NOME -->
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" placeholder="nome" required value="<%= contacts == null ? "" : contacts[id].nome %>">
+                </div>
+                <!-- E-MAIL -->
+                <div class="form-group col-md-6">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" autocomplete="off" placeholder="e-mail" required value="<%= contacts == null ? "" : contacts[id].email %>">
+                </div>
+            </div>
+            <!-- LINHA 02 -->
+                <!--  ENDEREÇO INSTALAÇÃO-->
+                <div class="form-group">
+                    <label for="endinsta">Endereço instação</label>
+                    <input type="text" class="form-control" id="endinsta" name="endinsta" autocomplete="off" placeholder="cidade, rua, número" required value="<%= contacts == null ? "" : contacts[id].endinsta %>">
+                </div>
+                <!-- ENDEREÇO COBRANÇA -->
+                <div class="form-group">
+                    <label for="endcob">Endereço cobrança</label>
+                    <input type="text" class="form-control" name="endcob" id="endcob" autocomplete="off" placeholder="cidade, rua, número" required value="<%= contacts == null ? "" : contacts[id].endcob %>">
+                </div>
+            <!-- LINHA 03 -->
+            <div class="form-row">
+                <!-- TELEFONE -->
+                <div class="form-group col-md-4">
+                    <label for="telef">Telefone</label>
+                    <input type="tel" class="form-control" name="telef" id="telef" autocomplete="off" placeholder="telefone" required value="<%= contacts == null ? "" : contacts[id].telef %>">
+                </div>
+                <!-- VELOCIDADE INSTALADA -->
+                <div class="form-group col-md-4">
+                    <label for="velinst">Velocidade instalada</label>
+                <input type="number" class="form-control" name="velinst" id="velinst" autocomplete="off" placeholder="velocidade instalada em Megabit" required value="<%= contacts == null ? "" : contacts[id].velinst %>">
+                </div>
+                <!-- VELOR DO PLANO MENSAL -->
+                <div class="form-group col-md-4">
+                    <label for="valor">Valor do Plano Mensal</label>
+                    <input type="number" class="form-control" name="valor" id="valor" autocomplete="off" placeholder="valor em R$ pago mensalmente" required value="<%= contacts == null ? "" : contacts[id].valor %>">
+                </div>
+            </div>
+        
+            <button type="submit" class="btn btn-primary btn-lg">Salvar</button>
+        </form>
+    </div>
+</body>
+
+</html>

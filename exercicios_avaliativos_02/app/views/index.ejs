@@ -1,0 +1,33 @@
+<% include layout/cabecalho %>
+<h1><%= cabecalho %></h1>
+<table class="table" style="margin:1rem;">
+	<tr>
+		<th scope="col">Nome</th>
+		<th scope="col">Telefone</th>
+		<th scope="col">E-mail</th>
+		<th scope="col">Endereço Instalação</th>
+		<th scope="col">Endereço Cobrança</th>
+		<th scope="col">Velocidade Instalada</th>
+		<th scope="col">Valor Mensal</th>
+		<th scope="col">Ações</th>
+	</tr>
+<% for (var i=0; i < contacts.length; i++) { %>
+	<tr>
+		<td><%= contacts[i].nome %></td>
+		<td><%= contacts[i].telef %></td>
+		<td><%= contacts[i].email %></td>
+		<td><%= contacts[i].endinsta %></td>
+		<td><%= contacts[i].endcob %></td>
+		<td><%= contacts[i].velinst %></td>
+		<td><%= contacts[i].valor %></td>
+
+		<td>
+			<a href="/contatos/atualiza/<%= i %>">Editar</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="/contatos/deleta/<%= i %>">Excluir</a>
+		</td>
+	</tr>
+<% }; %>
+</table>
+<p><a href="/contatos/novo"><button class="btn btn-primary" style="margin-top:5px;">Novo Cliente</button></a></p>
+<% include layout/rodape %>
