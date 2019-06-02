@@ -1,0 +1,600 @@
+<% include ../layout/head %>
+<body>
+
+    <!-- MENU -->
+   <% include ../menu/menu %>
+   <img src="images/logo-web2.png" id="imgTopoTela">
+
+    <% if(agenda.length > 0) { %>
+        <form action="/agenda/editar" method="POST">
+    <% } else { %>
+        <form action="/agenda/salvar" method="POST">
+    <% }  %>
+
+        <h1 id="titleTela">Realizar agendamento</h1>
+        <div id="centro" >  
+
+            <!-- ID / Campo está invisivel-->
+            <input type="hidden" name="id" value="<%= (agenda.length > 0) ? agenda[0].id : '' %>">
+
+            <!-- DONO -->
+            <div class="form-group col-md-6" id="divNomeClienteAgenda">
+                <label for="id_dono">Dono</label>
+                <select id="id_dono" name="id_dono" class="form-control">
+                    <option value=''></option>
+                    <% for( let i = 0; i < clientes.length; i++ ){ %>
+                        <% if( agenda.length > 0 ) { %>
+                            <% if(agenda[0].id_dono == clientes[i].id) {  %>
+                                <option value='<%=clientes[i].id %>' selected> <%= clientes[i].nome %> </option>
+                            <% } else { %>
+                                <option value='<%=clientes[i].id %>'> <%= clientes[i].nome %> </option>
+                            <% } %>
+                        <% } else { %>
+                            <option value='<%=clientes[i].id %>'> <%= clientes[i].nome %> </option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- PET -->
+            <div class="form-group col-md-6" id="divNomePetAgenda">
+                <label for="id_pet">Pet</label>
+                <select id="id_pet" name="id_pet" class="form-control">
+                    <option value=''></option>
+                    <% for( let i = 0; i < pets.length; i++ ){ %>
+                        <% if( agenda.length > 0 ) { %>
+                            <% if(agenda[0].id_pet == pets[i].id) {  %>
+                                <option value='<%=pets[i].id %>' selected> <%= pets[i].nome %> </option>
+                            <% } else { %>
+                                <option value='<%=pets[i].id %>'> <%= pets[i].nome %> </option>
+                            <% } %>   
+                        <% } else { %>
+                            <option value='<%=pets[i].id %>'> <%= pets[i].nome %> </option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- DATA AGENDA  -->
+            <div class="form-group col-md-6" id="divDataAgenda">
+                <label for="data_agenda">Data Agendamento</label>
+                <input type="date" id="data_agenda" name="data_agenda" value="<%= (agenda.length > 0) ? agenda[0].data_agenda : '' %>" class="form-control">
+            </div>
+
+            <!-- HORARIO AGENDA -->
+            <div class="form-group col-md-6" id="divHorarioAgenda">
+                <label for="exampleFormControlSelect1">Horário</label>
+                <select class="form-control" id="horario_agenda" name="horario_agenda">
+                    <% if(agenda.length > 0) { %>
+                        <% if(agenda[0].horario_agenda == '9:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" selected>9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+
+                        <% } else if(agenda[0].horario_agenda == '10:30') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30" selected>10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+
+                        <% } else if(agenda[0].horario_agenda == '13:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00" selected>13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+
+                        <% } else if(agenda[0].horario_agenda == '14:30') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30" selected>14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+
+                        <% } else if(agenda[0].horario_agenda == '16:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00" selected>16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+
+                        <% } else if(agenda[0].horario_agenda == '17:30') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30" selected>17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>                            
+
+                        <% } else if(agenda[0].horario_agenda == '10:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00" selected>10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>    
+
+                        <% } else if(agenda[0].horario_agenda == '11:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00" selected>11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>   
+
+                        <% } else if(agenda[0].horario_agenda == '14:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00" selected>14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>                                          
+
+                        <% } else if(agenda[0].horario_agenda == '15:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00" selected>15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>    
+                            
+                        <% } else if(agenda[0].horario_agenda == '16:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00" selected>16:00</option>
+                            <option value="17:00">17:00</option>                                 
+
+                        <% } else if(agenda[0].horario_agenda == '17:00') { %>
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00" selected>17:00</option>            
+
+                        <% } else { %>     
+                            <option value=""    >Horário</option>
+                            <option value=""    >Banho</option>
+                            <option value="9:00" >9:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option> 
+                         <% } %>
+                    <% } else { %>
+                        <option value=""    >Horário</option>
+                        <option value=""    >Banho</option>
+                        <option value="9:00" >9:00</option>
+                        <option value="10:30">10:30</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:30">14:30</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:30">17:30</option>
+                        <option value=""></option>
+                        <option value="">Tosa</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                    <% } %>
+                </select>
+            </div>  
+
+            <!-- SERVICO -->
+            <div class="form-group col-md-6" id="divServicoAgenda">
+                <label for="exampleFormControlSelect1">Serviço</label>
+                <select class="form-control" id="servico" name="servico" >
+                    <% if(agenda.length > 0) { %>
+                        <% if(agenda[0].servico == 1) { %>
+                            <option value="1" selected>Banho</option>
+                            <option value="2">Tosa</option>
+                            <option value="3">Banho e Tosa</option>
+                        <% } else if(agenda[0].servico == 2) { %>
+                            <option value="1">Banho</option>
+                            <option value="2" selected>Tosa</option>
+                            <option value="3">Banho e Tosa</option>
+                        <% } else if(agenda[0].servico == 3) { %>
+                            <option value="1">Banho</option>
+                            <option value="2">Tosa</option>
+                            <option value="3" selected>Banho e Tosa</option>
+                        <% } else {%>
+                            <option value="1">Banho</option>
+                            <option value="2">Tosa</option>
+                            <option value="3">Banho e Tosa</option>
+                        <% } %>
+                    <% } else { %>
+                        <option value="1">Banho</option>
+                        <option value="2">Tosa</option>
+                        <option value="3">Banho e Tosa</option>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- VALOR -->
+            <div class="form-group col-md-6" id="divValorAgenda">
+                    <label for="exampleFormControlSelect1">Valor (R$)</label>
+                    <select class="form-control" id="valorPetAgenda" name="valor">
+                        <% if(agenda.length > 0) { %>
+                            <% if(agenda[0].valor == 20) { %>
+                                <option value="">Valor (R$)</option>
+                                <option value="">Banho</option>
+                                <option value="20.00" selected>Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Tosa</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Banho e Tosa</option>
+                                <option value="40.00">Miniatura (40,00)</option>
+                                <option value="60.00">Pequeno (60,00)</option>
+                                <option value="80.00">Medio (80,00)</option>
+                                <option value="100.00">Grande (100,00)</option>
+                                <option value="120.00">Gigante (120,00)</option>
+                                
+                            <% } else if(agenda[0].valor == 30) { %>
+
+                                <option value="">Valor (R$)</option>
+                                <option value="">Banho</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00" selected>Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Tosa</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Banho e Tosa</option>
+                                <option value="40.00">Miniatura (40,00)</option>
+                                <option value="60.00">Pequeno (60,00)</option>
+                                <option value="80.00">Medio (80,00)</option>
+                                <option value="100.00">Grande (100,00)</option>
+                                <option value="120.00">Gigante (120,00)</option>
+
+                            <% } else if(agenda[0].valor == 40) { %>
+
+                                <option value="">Valor (R$)</option>
+                                <option value="">Banho</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00" selected>Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Tosa</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Banho e Tosa</option>
+                                <option value="40.00">Miniatura (40,00)</option>
+                                <option value="60.00">Pequeno (60,00)</option>
+                                <option value="80.00">Medio (80,00)</option>
+                                <option value="100.00">Grande (100,00)</option>
+                                <option value="120.00">Gigante (120,00)</option>    
+
+                            <% } else if(agenda[0].valor == 50) { %>
+                                <option value="">Valor (R$)</option>
+                                <option value="">Banho</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00" selected>Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Tosa</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Banho e Tosa</option>
+                                <option value="40.00">Miniatura (40,00)</option>
+                                <option value="60.00">Pequeno (60,00)</option>
+                                <option value="80.00">Medio (80,00)</option>
+                                <option value="100.00">Grande (100,00)</option>
+                                <option value="120.00">Gigante (120,00)</option>                                
+
+                                <% } else if(agenda[0].valor == 60) { %>
+                                    <option value="">Valor (R$)</option>
+                                    <option value="">Banho</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00" selected>Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Tosa</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Banho e Tosa</option>
+                                    <option value="40.00">Miniatura (40,00)</option>
+                                    <option value="60.00">Pequeno (60,00)</option>
+                                    <option value="80.00">Medio (80,00)</option>
+                                    <option value="100.00">Grande (100,00)</option>
+                                    <option value="120.00">Gigante (120,00)</option>                                
+
+                                <% } else if(agenda[0].valor == 80) { %>
+                                    <option value="">Valor (R$)</option>
+                                    <option value="">Banho</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Tosa</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Banho e Tosa</option>
+                                    <option value="40.00">Miniatura (40,00)</option>
+                                    <option value="60.00">Pequeno (60,00)</option>
+                                    <option value="80.00" selected>Medio (80,00)</option>
+                                    <option value="100.00">Grande (100,00)</option>
+                                    <option value="120.00">Gigante (120,00)</option>   
+
+                                <% } else if(agenda[0].valor == 100) { %>
+                                    <option value="">Valor (R$)</option>
+                                    <option value="">Banho</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Tosa</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Banho e Tosa</option>
+                                    <option value="40.00">Miniatura (40,00)</option>
+                                    <option value="60.00">Pequeno (60,00)</option>
+                                    <option value="80.00">Medio (80,00)</option>
+                                    <option value="100.00" selected>Grande (100,00)</option>
+                                    <option value="120.00">Gigante (120,00)</option>     
+
+                                <% } else if(agenda[0].valor == 120) { %>
+                                    <option value="">Valor (R$)</option>
+                                    <option value="">Banho</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Tosa</option>
+                                    <option value="20.00">Miniatura (20,00)</option>
+                                    <option value="30.00">Pequeno (30,00)</option>
+                                    <option value="40.00">Medio (40,00)</option>
+                                    <option value="50.00">Grande (50,00)</option>
+                                    <option value="60.00">Gigante (60,00)</option>
+                                    <option value=""></option>
+                                    <option value="">Banho e Tosa</option>
+                                    <option value="40.00">Miniatura (40,00)</option>
+                                    <option value="60.00">Pequeno (60,00)</option>
+                                    <option value="80.00">Medio (80,00)</option>
+                                    <option value="100.00">Grande (100,00)</option>
+                                    <option value="120.00" selected>Gigante (120,00)</option>                                                                    
+                            <% } else { %>
+                                <option value="">Valor (R$)</option>
+                                <option value="">Banho</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Tosa</option>
+                                <option value="20.00">Miniatura (20,00)</option>
+                                <option value="30.00">Pequeno (30,00)</option>
+                                <option value="40.00">Medio (40,00)</option>
+                                <option value="50.00">Grande (50,00)</option>
+                                <option value="60.00">Gigante (60,00)</option>
+                                <option value=""></option>
+                                <option value="">Banho e Tosa</option>
+                                <option value="40.00">Miniatura (40,00)</option>
+                                <option value="60.00">Pequeno (60,00)</option>
+                                <option value="80.00">Medio (80,00)</option>
+                                <option value="100.00">Grande (100,00)</option>
+                                <option value="120.00">Gigante (120,00)</option>
+                            <% } %>   
+                        <% } else { %>  
+                            <option value="">Valor (R$)</option>
+                            <option value="">Banho</option>
+                            <option value="20.00">Miniatura (20,00)</option>
+                            <option value="30.00">Pequeno (30,00)</option>
+                            <option value="40.00">Medio (40,00)</option>
+                            <option value="50.00">Grande (50,00)</option>
+                            <option value="60.00">Gigante (60,00)</option>
+                            <option value=""></option>
+                            <option value="">Tosa</option>
+                            <option value="20.00">Miniatura (20,00)</option>
+                            <option value="30.00">Pequeno (30,00)</option>
+                            <option value="40.00">Medio (40,00)</option>
+                            <option value="50.00">Grande (50,00)</option>
+                            <option value="60.00">Gigante (60,00)</option>
+                            <option value=""></option>
+                            <option value="">Banho e Tosa</option>
+                            <option value="40.00">Miniatura (40,00)</option>
+                            <option value="60.00">Pequeno (60,00)</option>
+                            <option value="80.00">Medio (80,00)</option>
+                            <option value="100.00">Grande (100,00)</option>
+                            <option value="120.00">Gigante (120,00)</option>
+                        <% } %>  
+                    </select>
+            </div>
+
+            <!-- BOTÃO -->
+            <div class="posicao-botao-salvar-formulario"> 
+               <input type="submit" value="Salvar" class="btnAlteracoes btn-lg btn-primary">
+            </div>
+        </div>
+    </form>   
+</body>
+</html>

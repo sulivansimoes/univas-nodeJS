@@ -1,0 +1,127 @@
+<% include ../layout/head %>
+
+<body>
+
+  <!-- MENU -->
+  <% include ../menu/menu %>
+  <img src="images/logo-web2.png" id="imgTopoTela">
+  
+  <h1 id="titleTela">Cadastro de Pet</h1>
+  <div id="centro" >  
+
+    <!-- FORMULARIO DE CADASTRO -->
+    <% if (  pet.length > 0 ){ %>
+        <form action="/pet/editar" method="POST">
+    <% } else {  %>
+        <form action="/pet/salvar" method="POST">
+    <% } %>
+
+            <!-- ID / Campos está invisivel-->
+            <input type="hidden" name="id" value="<%= (pet.length > 0) ? pet[0].id : '' %>">
+
+            <!-- DONO -->
+            <div class="form-group col-md-6" id="divCodDono">
+                <label for="id_dono">Dono</label>
+                <select id="id_dono" name="id_dono" class="form-control">
+                    <option value=''></option>
+                    <% for( let i = 0; i < clientes.length; i++ ){ %>
+                        <% if( pet.length > 0 ){ %>
+                            <% if( pet[0].id_dono == clientes[i].id ){ %>
+                                <option value='<%=clientes[i].id %>' selected> <%= clientes[i].nome %> </option>
+                            <% } else {%>
+                                <option value='<%=clientes[i].id %>'> <%= clientes[i].nome %> </option>
+                            <% } %>
+                        <% } else { %>
+                            <option value='<%=clientes[i].id %>'> <%= clientes[i].nome %> </option>
+                        <% } %>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- NOME DO PET -->
+            <div class="form-group col-md-4" id="nome">
+                <label for="nome"> Nome </label>
+                <input type="text" id="nome" name="nome" value="<%= (pet.length > 0) ? pet[0].nome : ''%>" class="form-control" placeholder="Nome do pet">
+            </div>
+
+            <!-- RAÇA DO PET -->
+            <div class="form-group col-md-2" id="raca">
+                <label for="raca"> Raça </label>
+                <input type="text" id="raca" name="raca" value="<%= (pet.length > 0) ? pet[0].raca : ''%>" class="form-control"  placeholder="Raça do pet">
+            </div>
+
+            <!-- SEXO -->
+            <div class="form-group col-md-6" id="">
+                <label for="sexo"> Sexo </label>
+                <select id="sexo" name="sexo" class="form-control">
+                    <% if( pet.length > 0 ) {%>
+                        <% if( pet[0].sexo == 'M' ){ %>
+                            <option value="M" selected> Macho </option>
+                            <option value="F"> Fêmea </option>
+                        <% } else { %>
+                            <option value="M"> Macho </option>
+                            <option value="F" selected> Fêmea </option>
+                        <% } %>
+                    <% } else {%>
+                        <option value="M"> Macho </option>
+                        <option value="F"> Fêmea </option>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- NASCIMENTO -->
+            <div class="form-group col-md-6"  id="divDataNasc">
+                <label for="nascimento"> Nascimento </label>
+                <input type="date" id="nascimento" name="nascimento" value="<%= (pet.length > 0) ? pet[0].nascimento : '' %>" class="form-control">
+            </div> 
+
+            <!-- TAMANHO -->
+            <div class="form-group col-md-6" id="divTamanho">
+                <label for="tamanho"> Tamanho </label>
+                <select id="tamanho" name="tamanho"  class="form-control">
+                    <% if( pet.length > 0 ){ %>
+                        <% if( pet[0].tamanho == 1){ %>
+                            <option value="1" selected> Miniatura </option>
+                            <option value="2"> Pequeno </option>
+                            <option value="3"> Médio </option>
+                            <option value="4"> Grande </option>
+                            <option value="5"> Gigante</option>>
+                        <% } else if( pet[0].tamanho == 2 ){ %>
+                            <option value="1"> Miniatura </option>
+                            <option value="2" selected> Pequeno </option>
+                            <option value="3"> Médio </option>
+                            <option value="4"> Grande </option>
+                            <option value="5"> Gigante</option>>
+                        <% } else if( pet[0].tamanho == 3 ){ %>
+                            <option value="1"> Miniatura </option>
+                            <option value="2"> Pequeno </option>
+                            <option value="3" selected> Médio </option>
+                            <option value="4"> Grande </option>
+                            <option value="5"> Gigante</option>>
+                        <% } else { %>
+                            <option value="1"> Miniatura </option>
+                            <option value="2"> Pequeno </option>
+                            <option value="3"> Médio </option>
+                            <option value="4" selected> Grande </option>
+                            <option value="5"> Gigante</option>>
+                        <% } %>
+                    <% } else { %>
+                        <option value="1"> Miniatura </option>
+                        <option value="2"> Pequeno </option>
+                        <option value="3"> Médio </option>
+                        <option value="4"> Grande </option>
+                        <option value="5"> Gigante</option>>
+                    <% } %>
+                </select>
+            </div>
+
+            <!-- BOTÃO -->
+            <div class="posicao-botao-salvar-formulario"> 
+                <input type="submit" value="Salvar" class="btnAlteracoes btn-lg btn-primary">
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

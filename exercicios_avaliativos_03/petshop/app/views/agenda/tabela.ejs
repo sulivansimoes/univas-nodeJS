@@ -1,0 +1,70 @@
+<% include ../layout/head %>
+<body>
+    
+    <!-- MENU -->
+    <% include ../menu/menu %>
+    <img src="images/logo-web2.png" id="imgTopoTela">
+   
+    <!-- BOTÃO INCLUSÃO-->
+    <div>
+        <a href="/formulario_agenda_salvar" class="btnAlteracoes btn btn-primary buttonIncluir">
+            Incluir nova Agenda
+         </a>
+     </div>
+
+    <!-- TABELA COM CADASTROS -->
+    <div id="centroTabela" style="margin-left: 0px;left: 322px;" class="centroTabela">
+            <table class="table table-striped" id="clientes_table">
+                <thead  style="font-size: 15px; display: block;" >
+                    <tr style="border-top-style:ridge; border-bottom-style:ridge; border-color: saddlebrown; ">
+                        <th scope="col" style="width: 115px;">ID</th>
+                        <div>
+                            <th scope="col" style="width: 131px;">Dono</th>
+                            <th scope="col" style="width: 91px;">Pet</th>
+                            <th scope="col" style="width: 101px;">Data Agenda</th>
+                            <th scope="col" style="width: 121px;">Serviço</th>
+                            <th scope="col" style="width: 105px;">Hora Agenda</th>
+                            <th scope="col" style="width: 98px;padding-left: 8px;">Valor</th>                            
+                            <th scope="col" style="width: 105px;">#</th>
+                            <th scope="col" style="width: 98px;padding-left: 8px;">#</th>                                                        
+                        </div>
+                    </tr>
+                </thead>
+                <tbody id="testRelatorioCadastroPet" style="font-size: 12px;display: inline-block; overflow-y: auto;height: 280px;width: 993px;">
+                    <% for(let i=0 ; i < agendas.length; i++) { %>
+                        <tr>
+                            <td> <%=agendas[i].id   %> </td>
+                            <td> <%=agendas[i].dono %> </td>
+                            <td> <%=agendas[i].pet  %> </td>
+                            <td> <%=agendas[i].data_agenda%>    </td>
+                            
+                            <% if( agendas[i].servico == 1 ) { %>
+                                <td> Banho </td>
+                            <% } else if ( agendas[i].servico == 2 ) { %>
+                                <td> Tosa </td>
+                            <% } else if ( agendas[i].servico == 3 ) { %>
+                                <td> Banho & Tosa </td>
+                            <% } %>
+                                        
+                            <td> <%=agendas[i].horario_agenda%> </td>
+                            <td> <%=agendas[i].valor %>   </td>
+    
+                            <td>
+                                <a href="/formulario_agenda_alterar?id=<%=agendas[i].id%>" class="btnAlteracoes btn btn-primary">
+                                    Editar
+                                </a>
+                            </td>
+
+                            <td>
+                                <a href="/agenda/deletar?id=<%=agendas[i].id%>" class="btnAlteracoes btn btn-primary">
+                                    Excluir
+                                </a>
+                            </td>
+                          
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+</body>
+</html>

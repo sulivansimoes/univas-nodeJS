@@ -1,0 +1,62 @@
+<% include ../layout/head %>
+<body>
+    
+    <!-- MENU -->
+    <% include ../menu/menu %>
+    <img src="images/logo-web2.png" id="imgTopoTela">
+
+    <!-- BOTÃO INCLUSÃO-->
+    <div>
+        <a href="/formulario_cliente_salvar" class="btnAlteracoes btn btn-primary buttonIncluir">
+            Incluir Cliente
+        </a>
+    </div>
+
+    <!-- TABELA COM CADASTROS -->
+    <div id="centroTabela" style="margin-left: 0px;left: 322px;" class="centroTabela">
+        <table class="table table-striped" id="clientes_table">
+            <thead  style="font-size: 15px; display: block;" >
+                <tr style="border-top-style:ridge; border-bottom-style:ridge; border-color: saddlebrown; ">
+                    <th scope="col" style="width: 115px;">ID</th>
+                    <div>
+                        <th scope="col" style="width: 131px;">Nome</th>
+                        <th scope="col" style="width: 91px;">Cpf</th>
+                        <th scope="col" style="width: 101px;">E-mail</th>
+                        <th scope="col" style="width: 105px;">Nascimento</th>
+                        <th scope="col" style="width: 121px;">Telefone</th>
+                        <!-- <th scope="col" style="width: 98px;padding-left: 8px;">Nasc.</th> -->
+                        <th scope="col" style="width: 112px;padding-left: 8px;">Endereço</th>
+                        <th scope="col" style="width: 119px;padding-left: 8px;padding-right: 8px;">#</th>
+                        <th scope="col" style="width: 119px;padding-left: 8px;padding-right: 8px;">#</th>
+                    </div>
+                </tr>
+            </thead>
+            <tbody id="testRelatorioCadastroPet" style="font-size: 12px;display: inline-block; overflow-y: auto;height: 280px;width: 993px;">
+                <% for(let i=0 ; i < clientes.length; i++) { %>
+                    <tr>
+                        <td> <%=clientes[i].id   %> </td>
+                        <td> <%=clientes[i].nome %> </td>
+                        <td> <%=clientes[i].cpf  %> </td>
+                        <td> <%=clientes[i].email%> </td>
+                        <td> <%=clientes[i].nascimento %> </td>
+                        <td> <%=clientes[i].telefone %>   </td>
+                        <td> <%=clientes[i].endereco %>   </td>
+        
+                        <td>
+                            <a href="/formulario_cliente_alterar?id=<%=clientes[i].id%>" class="btnAlteracoes btn btn-primary">
+                                Editar
+                            </a>
+                        </td>
+                                
+                        <td>
+                            <a href="/cliente/deletar?id=<%=clientes[i].id%>" class="btnAlteracoes btn btn-primary">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

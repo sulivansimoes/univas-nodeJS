@@ -1,0 +1,78 @@
+<% include ../layout/head %>
+<body>
+    
+    <!-- MENU -->
+    <% include ../menu/menu %>
+    <img src="images/logo-web2.png" id="imgTopoTela">
+
+    <!-- BOTÃO INCLUSÃO-->
+    <div>
+        <a href="/formulario_pet_salvar" class="btnAlteracoes btn btn-primary buttonIncluir">
+            Incluir Pet
+        </a>
+    </div>
+
+    <!-- TABELA COM CADASTROS -->
+    <div id="centroTabela" style="margin-left: 0px;left: 322px;" class="centroTabela">
+        <table class="table table-striped" id="clientes_table">
+            <thead  style="font-size: 15px; display: block;" >
+                <tr style="border-top-style:ridge; border-bottom-style:ridge; border-color: saddlebrown; ">
+                    <th scope="col" style="width: 115px;">ID</th>
+                    <div>
+                        <th scope="col" style="width: 91px;">Dono</th>
+                        <th scope="col" style="width: 91px;">Pet</th>
+                        <th scope="col" style="width: 131px;">Raça</th>
+                        <th scope="col" style="width: 101px;">Sexo</th>
+                        <th scope="col" style="width: 105px;">Tamanho</th>
+                        <th scope="col" style="width: 121px;">Nasc.</th>
+                        <th scope="col" style="width: 119px;padding-left: 8px;padding-right: 8px;">#</th>
+                        <th scope="col" style="width: 119px;padding-left: 8px;padding-right: 8px;">#</th>
+                    </div>
+                </tr>
+            </thead>
+            <tbody id="testRelatorioCadastroPet" style="font-size: 12px;display: inline-block; overflow-y: auto;height: 280px;width: 993px;">
+                <% for(let i=0 ; i < pets.length; i++) { %>
+                    <tr>
+                        <td> <%=pets[i].id %>       </td>
+                        <td> <%=pets[i].nome_dono %></td>
+                        <td> <%=pets[i].nome %>     </td>
+                        <td> <%=pets[i].raca %>     </td>
+
+                        <% if ( pets[i].sexo == 'F' ) { %>
+                            <td> Feminino </td> 
+                        <% } else if ( pets[i].sexo == 'M' ) { %>
+                            <td> Masculino </td> 
+                        <% } %>
+
+                        <% if ( pets[i].tamanho == 1 ) { %>
+                            <td> Miniatura </td> 
+                        <% } else if ( pets[i].tamanho == 2 ) { %>
+                            <td> Pequeno </td> 
+                        <% } else if ( pets[i].tamanho == 3 ) { %>    
+                            <td> Medio </td>
+                        <% } else if ( pets[i].tamanho == 4 ) { %>    
+                            <td> Grande </td> 
+                        <% } else if ( pets[i].tamanho == 5 ) { %>    
+                            <td> Gigante </td> 
+                        <% } %>
+
+                        <td> <%=pets[i].nascimento%> </td>
+
+                        <td>
+                            <a href="/formulario_pet_alterar?id=<%=pets[i].id%>" class="btnAlteracoes btn btn-primary">
+                                Editar
+                            </a>
+                        </td>
+                        
+                        <td>
+                            <a href="/pet/deletar?id=<%=pets[i].id%>" class="btnAlteracoes btn btn-primary">
+                                Excluir
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
